@@ -53,20 +53,18 @@ function checkexpiredtoken(token){
 
 function userlogin(){
     setuserpassword();
-    setusername();
     $.ajax({
         type: 'POST',
         url: 'https://dev.stedi.me/twofactorlogin',
-        data:{phoneNumber: userName, oneTimePassword: password},
+        data: JSON.stringify({phoneNumber: userName, oneTimePassword: password}),
         success: function(data) {
-           window.location.href = "/timer.html#"+data; //add the token to the url
+            window.location.href = "/timer.html#"+data;//add the token to the url
         },
         contentType: "application/text",
         dataType: 'text'
     });
 
 }
-
 function readonlyforms(formid){
     form = document.getElementById(formid);
     elements = form.elements;
